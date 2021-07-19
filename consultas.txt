@@ -1,0 +1,43 @@
+1
+select nombre from articulos
+2
+select nombre, precio from articulos
+3
+select nombre, precio from articulos where precio >= 200
+4
+select * from articulos where precio between 60 and 120
+5
+select nombre, precio * 166.386 from articulos
+6
+select avg(precio) AS precio from articulos
+7
+select avg(precio) AS precio from articulos where fabricante = 2
+8
+select count(*) from articulos where precio >= 180
+9
+select nombre, precio from articulos where precio >= 180 order by precio desc, nombre asc
+10
+select * from articulos join fabricantes ON fabricantes.codigo = articulos.fabricante
+11
+select articulos.nombre, articulos.precio, fabricantes.nombre from articulos join fabricantes ON fabricantes.codigo = articulos.fabricante
+12
+select avg(precio) AS precio, fabricante from articulos GROUP BY fabricante
+13
+select AVG(articulos.precio) AS precio, fabricantes.nombre from articulos join fabricantes ON fabricantes.codigo = articulos.fabricante GROUP BY fabricantes.nombre
+14
+select AVG(articulos.precio) AS precio, fabricantes.nombre from articulos join fabricantes ON fabricantes.codigo = articulos.fabricante GROUP BY fabricantes.nombre HAVING avg(precio) >= 150
+15
+select codigo, precio from articulos order by precio ASC LIMIT 1
+16
+select AR1.nombre, AR1.precio, fabricantes.nombre
+from articulos AR1
+join (select max(AR2.codigo) AS codigo from articulos AR2 group by AR2.fabricante) AR2 ON AR1.codigo=AR2.codigo
+join fabricantes ON fabricantes.codigo = AR1.fabricante
+17
+insert into articulos (codigo, nombre, precio, fabricante) VALUES (11,'Altavoces',70,2)
+18
+update articulos set nombre='Impresora Laser' where codigo = 8
+19
+update articulos set precio =precio*0.9
+20
+update articulos set precio =precio-10 where precio >= 120
